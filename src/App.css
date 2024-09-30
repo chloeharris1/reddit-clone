@@ -1,38 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+/* General Reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+/* Only reset margin and padding for lists */
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
 .App {
-  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+  /* overflow-x: hidden; */
+  /* Prevent horizontal scroll */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-header {
+  grid-area: header;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.sidebar {
+  grid-area: sidebar;
+}
+
+.main-content {
+  grid-area: content;
+}
+
+.app-container {
+  display: grid;
+  gap: 20px;
+  grid-template-areas: "header" "sidebar" "content";
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 700px) {
+  .app-container {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "header header" "sidebar content";
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@media (min-width: 1024px) {
+  .app-container {
+    grid-template-columns: 1fr 4fr;
+    /* Sidebar (1fr) | Main Content (5fr) */
+    grid-template-areas: "header header" "sidebar content";
+  }
+}
+
+/* Grid layout for the entire page */
+
+/* Header styles */
+
+header {
+  background-color: #1d1d1d;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-family: "Archivo Black", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Sidebar styling */
+
+.sidebar {
+  background-color: #f4f4f4;
+  border-right: 1px solid #e0e0e0;
+  /* padding: 20px; */
+}
+
+/* Main content area */
+
+.posts-list {
+  padding: 0 40px;
+}
+
+.main-content,
+.posts-list,
+.post-preview {
+  width: 100%;
+}
+
+.main-content {
+  padding: 20px;
+  background-color: #f6f7f8;
+}
+
+/* Subreddits List using Grid */
+
+.subreddits-list {
+  /* background-color: #ffffff; */
+  padding: 10px 20px;
+}
+
+.subreddits-list ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.subreddit-category h4 {
+  font-weight: 500;
+}
+
+.subreddit-name a {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 8px;
 }
 
-.App-link {
-  color: #61dafb;
+.subreddits-list ul li img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.subreddits-list ul li h3 {
+  font-size: 1em;
+  font-weight: 500;
+  color: #444;
+  margin: 0;
+}
+
+.subreddits-list ul li:hover {
+  background-color: #f7f7f7;
+}
+
+.subreddits-list ul li .active-subreddit {
+  background-color: #f0f0f0;
+  font-weight: 700;
+  border-left: 4px solid #0079d3;
+}
+
+/* Post Styling */
+
+.post-preview {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  /* Make sure it never exceeds the container width */
+}
+
+.post-preview:hover {
+  background-color: #f9f9f9;
+}
+
+.post-preview h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.post-credits,
+.post-stats {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.user-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.post-stats {
+  display: flex;
+}
+
+.post-stats span {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.post-preview img,
+.post-preview iframe {
+  width: 100%;
+  /* Scale to fit the container */
+  height: auto;
+}
+
+/* Font Settings */
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f6f7f8;
+  color: #333;
+}
+
+a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.active-subreddit {
+  background-color: #e0e0e0;
+  font-weight: bold;
 }

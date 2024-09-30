@@ -1,0 +1,41 @@
+.comment {
+  display: flex;
+  font-size: 0.9em;
+  flex-direction: column;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.author-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.author-info {
+  display: flex;
+}
+
+.author-name {
+  font-weight: bold;
+}
+
+.comment-time {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+.comment-body {
+  margin: 0.5rem 0;
+}
+
+.comment-replies {
+  margin-left: 2rem;
+  border-left: 2px solid #ddd;
+  padding-left: 1rem;
+}

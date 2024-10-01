@@ -35,7 +35,7 @@ const postsSlice = createSlice({
     comments: {},
     status: "idle",
     error: null,
-    selectedSubreddit: "dan_markel_muder",
+    selectedSubreddit: "dan_markel_murder",
     currentPostId: null,
   },
   reducers: {

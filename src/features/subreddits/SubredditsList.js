@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchSubredditsList, selectSubreddits } from "./subredditsSlice"; // Import the thunk
 import { NavLink } from "react-router-dom";
 import { subredditCategories } from "../../utils/categories";
+import { subredditImg } from "../../utils/utils";
 
 export const SubredditsList = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ export const SubredditsList = () => {
     }
   }, [status, dispatch]);
 
+  // console.log(subreddits);
+
   // Map over categories and filter the dynamic subreddit data to match each category
   const renderSubredditCategories = () => {
     return Object.entries(subredditCategories).map(
@@ -28,6 +31,7 @@ export const SubredditsList = () => {
               const subreddit = subreddits.find(
                 (sub) => sub.name === subredditName
               );
+              // console.log("Checking:", subredditName, subreddit); // Log to see the match
               return (
                 subreddit && (
                   <li
@@ -41,7 +45,10 @@ export const SubredditsList = () => {
                         isActive ? "active-subreddit" : ""
                       }
                     >
-                      <img src={subreddit.image} alt="subreddit-icon" />
+                      <img
+                        src={subredditImg || subreddit.image}
+                        alt="subreddit-icon"
+                      />
                       <p>{subreddit.name}</p>
                     </NavLink>
                   </li>

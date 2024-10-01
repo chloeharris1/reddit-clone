@@ -14,12 +14,12 @@ const FullPost = () => {
   const dispatch = useDispatch();
 
   const posts = useSelector(selectPosts);
-  const post = posts.find((p) => p.id === currentPostId);
   const currentPostId = useSelector(selectCurrentPostId);
+  const post = posts.find((p) => p.id === currentPostId);
   const comments = useSelector((state) =>
     selectCommentsByPostId(state, currentPostId)
   );
-  console.log(post);
+  console.log(comments);
 
   useEffect(() => {
     if (currentPostId && post) {
@@ -38,8 +38,8 @@ const FullPost = () => {
         <ReactMarkdown>{post.title}</ReactMarkdown>
       </h1>
       {renderPostContent(post)}
-      <CommentsList comments={comments} />
-      {/* <CommentsList subreddit={post.subreddit} postId={currentPostId} /> */}
+      {/* <CommentsList comments={comments} /> */}
+      <CommentsList subreddit={post.subreddit} postId={currentPostId} />
     </div>
   );
 };

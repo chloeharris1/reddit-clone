@@ -71,4 +71,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### Attribution
 
-User icon by Adriano Vabeni from Noun Project
+Subreddit icon created by Iconsparty from Noun Project

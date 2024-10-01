@@ -15,7 +15,7 @@ export const PostsList = () => {
   // fetch posts whenever the subreddit changes
   useEffect(() => {
     if (selectedSubreddit) {
-      console.log("Selected subreddit:", selectedSubreddit);
+      // console.log("Selected subreddit:", selectedSubreddit);
       dispatch(fetchPosts(selectedSubreddit));
     }
   }, [selectedSubreddit, dispatch]);

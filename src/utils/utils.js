@@ -8,22 +8,25 @@ export const baseUrl = "https://www.reddit.com";
 // True crime subreddits
 export const crimeSubreddits = [
   "TrueCrime",
-  "Crime",
+  "crime",
   "RedditCrimeCommunity",
   "TrueCrimeDiscussion",
   "UnresolvedMysteries",
   "UnsolvedMysteries",
-  "SerialKillers",
+  "serialkillers",
   "CourtTVCases",
   "dan_markel_murder",
-  "ColdCases",
+  "coldcases",
   "TrueCrimePodcasts",
   "TrueCrimeBooks",
   "ForensicFiles",
   "courtneyclenneytrial",
   "jaredbridegan",
   "KouriRichins",
+  "CasesWeFollow",
 ];
+
+export const subredditImg = "noun-fingerprint.png";
 
 // export const userImg = "noun-detective-5490050.png";
 

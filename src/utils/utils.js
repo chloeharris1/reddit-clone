@@ -28,7 +28,7 @@ export const crimeSubreddits = [
 
 export const subredditImg = "noun-fingerprint.png";
 
-// export const userImg = "noun-detective-5490050.png";
+export const userImg = "noun-incognito.png";
 
 /* Helper functions */
 
@@ -131,8 +131,8 @@ export const renderPostContent = (post) => {
 export const renderPostCredits = (post) => {
   return (
     <div className="post-credits">
-      {/* <img src={userImg} className="user-icon" alt="user-icon" /> */}
-      <span>posted by {post.author}</span>
+      <img src={userImg} className="user-icon" alt="user-icon" />
+      <span>{post.author}</span>
       <span>{moment.unix(post.created_utc).fromNow()}</span>
     </div>
   );

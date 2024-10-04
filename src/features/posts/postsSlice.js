@@ -10,7 +10,7 @@ export const fetchPosts = createAsyncThunk(
       throw new Error(`Failed to fetch posts: ${response.status}`);
     }
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
     return data.data.children.map((child) => child.data);
   }
 );

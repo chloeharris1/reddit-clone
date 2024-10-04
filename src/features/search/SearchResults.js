@@ -8,38 +8,48 @@ import {
 } from "./searchSlice";
 // import { selectSubreddits } from "../subreddits/subredditsSlice";
 import PostPreview from "../../components/PostPreview";
+// import PostsList from "../posts/PostsList";
 
 export const SearchResults = () => {
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("q");
   const dispatch = useDispatch();
+
   const results = useSelector(selectSearchResults);
+  console.log("Search results:", results); // Check the search results array before rendering
   const status = useSelector(selectSearchStatus);
 
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get("q"); // Get search term from URL
+  // const query = searchParams.get("q"); // Get search term from URL
 
   useEffect(() => {
-    const subreddits = searchParams.get("subreddits")?.split(",") || []; // Get subreddits from URL
-    console.log("Subreddits: ", subreddits, "Search Query: ", query);
+    //   const subreddits = searchParams.get("subreddits")?.split(",") || []; // Get subreddits from URL
+    //   console.log("Subreddits: ", subreddits, "Search Query: ", query);
 
-    if (query && subreddits.length > 0) {
-      // Dispatch search results fetch action based on query
-      dispatch(fetchSearchResults({ searchTerm: query, subreddits }));
+    //   if (query && subreddits.length > 0) {
+    //     // Dispatch search results fetch action based on query
+    //     dispatch(fetchSearchResults({ searchTerm: query, subreddits }));
+    //   }
+    // }, [query, searchParams, dispatch]);
+    if (searchTerm) {
+      dispatch(fetchSearchResults(searchTerm)); // Trigger search
     }
-  }, [query, searchParams, dispatch]);
+  }, [searchTerm, dispatch]);
 
   if (status === "loading") {
     return <p>Loading search results...</p>;
   }
 
   if (results.length === 0 && status === "succeeded") {
-    return <p>No results found for "{query}".</p>;
+    return <p>No results found for "{searchTerm}".</p>;
   }
 
   return (
     <div className="search-results">
+      <h2>Search results for: {searchTerm}</h2>
       {results.map((post) => (
         <PostPreview key={post.id} post={post} />
       ))}
+      {/* <PostsList posts={results} />  */}
     </div>
   );
 };

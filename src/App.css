@@ -187,6 +187,8 @@ header {
 .post-stats {
   font-size: 0.9em;
   color: #888;
+  display: flex;
+  gap: 8px;
 }
 
 .post-credits .user-icon {

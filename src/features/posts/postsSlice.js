@@ -10,7 +10,7 @@ export const fetchPosts = createAsyncThunk(
       throw new Error(`Failed to fetch posts: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data.data.children.map((child) => child.data);
   }
 );
@@ -56,6 +56,7 @@ const postsSlice = createSlice({
         state.status = "succeeded";
         // Store fetched subreddit data in the state
         state.posts = action.payload;
+        console.log(state.posts);
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";

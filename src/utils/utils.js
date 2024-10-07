@@ -64,7 +64,7 @@ export const isLinkPost = (post) => {
 // Conditional rendering based on post type
 export const renderPostContent = (post) => {
   if (isVideoPost(post)) {
-    console.log("Video post detected");
+    // console.log("Video post detected");
     // Check if the post has a media embed with an iframe URL
     if (post.media_embed && post.media_embed.content) {
       const match = post.media_embed.content.match(/src="([^"]*)"/); // Find src attribute within HTML markup

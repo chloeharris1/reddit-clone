@@ -16,7 +16,7 @@ export const SearchResults = () => {
   const dispatch = useDispatch();
 
   const results = useSelector(selectSearchResults);
-  console.log("Search results:", results); // Check the search results array before rendering
+  // console.log("Search results:", results);
   const status = useSelector(selectSearchStatus);
 
   // const query = searchParams.get("q"); // Get search term from URL
@@ -46,10 +46,13 @@ export const SearchResults = () => {
   return (
     <div className="search-results">
       <h2>Search results for: {searchTerm}</h2>
+
       {results.map((post) => (
-        <PostPreview key={post.id} post={post} />
+        <div className="search-result">
+          <h2>{post.subreddit_name_prefixed}</h2>
+          <PostPreview key={post.id} post={post} />
+        </div>
       ))}
-      {/* <PostsList posts={results} />  */}
     </div>
   );
 };

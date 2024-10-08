@@ -97,9 +97,3 @@ export const selectCommentsByPostId = (state, postId) =>
   state.posts.comments[postId]?.comments || [];
 
 export default postsSlice.reducer;
-
-// export const selectPosts = (state) => state.posts.posts;
-// export const setSelectedSubreddit = (state) => state.posts.selectedSubreddit;
-// export const setCurrentPostId = (state) => state.posts.currentPostId;
-// export const selectCommentsByPostId = (state, postId) =>
-//   state.posts.comments[postId]?.comments || [];

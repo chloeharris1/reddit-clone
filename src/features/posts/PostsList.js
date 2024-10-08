@@ -28,22 +28,8 @@ export const PostsList = () => {
     return <p>Error: {error}</p>;
   }
 
-  // Filter posts based on search term (search through all posts)
-  // const filteredPosts = searchTerm
-  //   ? posts.filter((post) =>
-  //       post.title.toLowerCase().includes(searchTerm.toLowerCase())
-  //     )
-  //   : posts;
-
   // Filter out community highlight posts
   const userPosts = posts.filter((post) => !isCommunityHighlight(post));
-
-  // If a search term exists, return the SearchResults component
-  // if (searchTerm) {
-  //   return (
-  //     <SearchResults filteredPosts={filteredPosts} searchTerm={searchTerm} />
-  //   );
-  // }
 
   return (
     <div className="posts-list">

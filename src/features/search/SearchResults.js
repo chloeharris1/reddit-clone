@@ -19,26 +19,14 @@ export const SearchResults = () => {
   // console.log("Search results:", results);
   const status = useSelector(selectSearchStatus);
 
-  // const query = searchParams.get("q"); // Get search term from URL
-
   useEffect(() => {
-    //   const subreddits = searchParams.get("subreddits")?.split(",") || []; // Get subreddits from URL
-    //   console.log("Subreddits: ", subreddits, "Search Query: ", query);
-
-    //   if (query && subreddits.length > 0) {
-    //     // Dispatch search results fetch action based on query
-    //     dispatch(fetchSearchResults({ searchTerm: query, subreddits }));
-    //   }
-    // }, [query, searchParams, dispatch]);
     if (searchTerm) {
       dispatch(fetchSearchResults(searchTerm)); // Trigger search
     }
   }, [searchTerm, dispatch]);
-
   if (status === "loading") {
     return <p>Loading search results...</p>;
   }
-
   if (results.length === 0 && status === "succeeded") {
     return <p>No results found for "{searchTerm}".</p>;
   }

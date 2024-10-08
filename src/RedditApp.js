@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SubredditsList from "./features/subreddits/SubredditsList";
 import PostsList from "./features/posts/PostsList";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { Header } from "./components/Header";
 import FullPost from "./components/FullPost";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,11 +11,14 @@ import {
   selectSelectedSubreddit,
   selectCurrentPostId,
 } from "./features/posts/postsSlice";
+import { SearchResults } from "./features/search/SearchResults";
 
 const RedditApp = () => {
   const dispatch = useDispatch();
   // // Get the selected subreddit from the URL params
   const { subredditName, postId } = useParams();
+  // Get the current location to detect the search path
+  const location = useLocation();
 
   // Get selected subreddit and post ID from Redux
   const selectedSubreddit = useSelector(selectSelectedSubreddit);
@@ -40,11 +43,18 @@ const RedditApp = () => {
         <SubredditsList />
       </aside>
       <main className="main-content">
-        {currentPostId ? (
+        {location.pathname.startsWith("/search") ? (
+          <SearchResults />
+        ) : currentPostId ? (
           <FullPost postId={currentPostId} />
         ) : (
           <PostsList selectedSubreddit={selectedSubreddit} />
         )}
+        {/* {currentPostId ? (
+          <FullPost postId={currentPostId} />
+        ) : (
+          <PostsList selectedSubreddit={selectedSubreddit} />
+        )} */}
       </main>
     </div>
   );

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectPosts, fetchPosts, selectSelectedSubreddit } from "./postsSlice";
 import PostPreview from "../../components/PostPreview";
 import { isCommunityHighlight } from "../../utils/utils";
+import { useParams } from "react-router-dom";
 // import { SearchResults } from "../search/SearchResults";
 
 export const PostsList = () => {

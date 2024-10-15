@@ -10,8 +10,20 @@ export const fetchPosts = createAsyncThunk(
       throw new Error(`Failed to fetch posts: ${response.status}`);
     }
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
     return data.data.children.map((child) => child.data);
+  }
+);
+// Fetch a single post by ID
+export const fetchPostById = createAsyncThunk(
+  "posts/fetchPostById",
+  async (postId) => {
+    const response = await fetch(`${baseUrl}/comments/${postId}.json`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch post by ID: ${response.status}`);
+    }
+    const data = await response.json();
+    return data[0].data.children[0].data; // Post data
   }
 );
 
@@ -91,6 +103,7 @@ export const { setSelectedSubreddit, setCurrentPostId } = postsSlice.actions;
 
 // Selectors
 export const selectPosts = (state) => state.posts.posts;
+export const selectPostsStatus = (state) => state.posts.status;
 export const selectSelectedSubreddit = (state) => state.posts.selectedSubreddit;
 export const selectCurrentPostId = (state) => state.posts.currentPostId;
 export const selectCommentsByPostId = (state, postId) =>

@@ -39,7 +39,7 @@ export const isCommunityHighlight = (post) => {
 export const isVideoPost = (post) => {
   return (
     post.post_hint === "rich:video" || // Check for rich media video posts
-    post.media_embed.content || // Check if there is embedded media content
+    post.media_embed || // Check if there is embedded media content (had .content on the end but it caused an error)
     post.domain === "youtu.be" ||
     post.domain === "youtube.com" // Check for YouTube domains
   );
@@ -48,8 +48,7 @@ export const isVideoPost = (post) => {
 export const isImagePost = (post) => {
   return (
     post.post_hint === "image" ||
-    post.url.endsWith(".jpg") ||
-    post.url.endsWith(".png")
+    (post.url && (post.url.endsWith(".jpg") || post.url.endsWith(".png")))
   );
 };
 
@@ -127,7 +126,6 @@ export const renderPostContent = (post) => {
   return <p>{post.selftext || "No content available"}</p>;
 };
 
-// New functions 9/05
 export const renderPostCredits = (post) => {
   return (
     <div className="post-credits">

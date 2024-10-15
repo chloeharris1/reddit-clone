@@ -10,32 +10,71 @@ import {
   setCurrentPostId,
   selectSelectedSubreddit,
   selectCurrentPostId,
+  selectCommentsByPostId,
+  selectPostsStatus,
+  fetchPostById,
+  fetchPosts,
 } from "./features/posts/postsSlice";
 import { SearchResults } from "./features/search/SearchResults";
 
 const RedditApp = () => {
   const dispatch = useDispatch();
-  // // Get the selected subreddit from the URL params
-  const { subredditName, postId } = useParams();
-  // Get the current location to detect the search path
-  const location = useLocation();
+  // // Get URL params for subreddit and postId
+  const { subreddit, postId } = useParams();
 
-  // Get selected subreddit and post ID from Redux
+  // Detect search route using location
+  const location = useLocation();
+  const isSearch = location.pathname.startsWith("/search");
+
+  // Retrieve current subreddit and postId from Redux store
   const selectedSubreddit = useSelector(selectSelectedSubreddit);
+  const postsStatus = useSelector(selectPostsStatus);
   const currentPostId = useSelector(selectCurrentPostId);
+
+  const post = useSelector((state) =>
+    selectCommentsByPostId(state, currentPostId)
+  );
 
   // Update subreddit and postId when URL params change
   useEffect(() => {
-    if (subredditName && subredditName !== selectedSubreddit) {
-      dispatch(setSelectedSubreddit(subredditName));
+    // Check if it's a search route or a subreddit route
+    // if (isSearch) {
+    //   // Handle search route logic
+    //   if (postId && !currentPostId) {
+    //     dispatch(setCurrentPostId(postId)); // Set current post ID for the search case
+    //     dispatch(fetchPostById(postId)); // Fetch the post by ID (search result)
+    //   }
+    // } else {
+    //   // Handle subreddit route logic
+    //   if (subredditName && subredditName !== selectedSubreddit) {
+    //     dispatch(setSelectedSubreddit(subredditName));
+    //   }
+    //   if (subredditName && postsStatus === "idle") {
+    //     dispatch(fetchPosts(subredditName)); // Fetch posts for the subreddit
+    //   }
+    // }
+    if (isSearch && postId) {
+      // If it's a search route, just set the current post ID
+      // dispatch(setCurrentPostId(postId));
+      dispatch(fetchPostById(postId));
+    } else if (subreddit) {
+      // If it's a normal subreddit route, set the subreddit and post
+      dispatch(setSelectedSubreddit(subreddit));
+      if (postId) dispatch(setCurrentPostId(postId));
+    }
+    if (subreddit && subreddit !== selectedSubreddit) {
+      dispatch(setSelectedSubreddit(subreddit));
     }
     if (postId && postId !== currentPostId) {
+      console.log("Setting current post ID:", postId);
       dispatch(setCurrentPostId(postId));
     } else if (!postId) {
       dispatch(setCurrentPostId(null)); // Clear post ID if none in URL
     }
-  }, [subredditName, postId, dispatch, selectedSubreddit, currentPostId]);
+    // [subredditName, postId, dispatch, selectedSubreddit, currentPostId];
+  }, [dispatch, subreddit, postId, isSearch, selectedSubreddit, currentPostId]);
 
+  // 10/10 rec changes: [dispatch, subredditName, postId, isSearch]
   return (
     <div className="app-container">
       <Header />
@@ -43,18 +82,13 @@ const RedditApp = () => {
         <SubredditsList />
       </aside>
       <main className="main-content">
-        {location.pathname.startsWith("/search") ? (
+        {isSearch ? (
           <SearchResults />
         ) : currentPostId ? (
-          <FullPost postId={currentPostId} />
+          <FullPost />
         ) : (
           <PostsList selectedSubreddit={selectedSubreddit} />
         )}
-        {/* {currentPostId ? (
-          <FullPost postId={currentPostId} />
-        ) : (
-          <PostsList selectedSubreddit={selectedSubreddit} />
-        )} */}
       </main>
     </div>
   );

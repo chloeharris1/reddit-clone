@@ -1,42 +1,45 @@
-import React, { useState } from "react";
-// import { useSelector } from "react-redux";
-// import { fetchSearchResults } from "../features/search/searchSlice";
-// import { selectSelectedSubreddit } from "../features/posts/postsSlice";
-// import { selectSubreddits } from "../features/subreddits/subredditsSlice";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
+import { selectTerm, setTerm, clearTerm } from "../features/search/searchSlice";
 
 export const Header = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const term = useSelector(selectTerm);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // returns the location object from the current URL
+  // let location = useLocation();
+  // const navigate = useNavigate();
 
-  // Get full list of subreddits
-  // const allSubreddits = useSelector(selectSubreddits);
-  // console.log("All subreddits:", allSubreddits);
+  // let handleTermChange = (e) => dispatch(setTerm(e.target.value));
 
-  // Get defined subreddits from state
-  // const selectedSubreddits = useSelector(selectSelectedSubreddit);
-  // console.log(selectedSubreddits);
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  //   navigate(`/search?q=${term}`);
+  // };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    navigate(`/search?q=${searchTerm}`);
+  // useEffect(() => {
+  //   if (location.pathname !== "/search") {
+  //     dispatch(clearTerm());
+  //   }
+  // }, [location, dispatch]);
+  const navigate = useNavigate(); // To navigate to the search results page
 
-    // Use full list of subreddits for search
-    // let subredditsToSearch = allSubreddits.map((sub) => sub.name);
+  const handleTermChange = (event) => {
+    const newTerm = event.target.value;
+    dispatch(setTerm(newTerm)); // Update term in Redux store
+  };
 
-    // Update the URL to reflect the search query, include subreddits in search
-    // if (searchTerm.trim()) {
-    //   navigate(
-    //     `/search?q=${searchTerm}&subreddits=${subredditsToSearch.join(",")}`
-    //   );
-    //   console.log("Search Term is:", searchTerm);
-    // }
+  // Handle search form submission
+  const handleSearch = (event) => {
+    event.preventDefault(); // Prevent form submission
+    // Navigate to the search page with the search term as a query parameter
+    if (term.trim()) {
+      navigate(`/search?q=${term}`);
 
-    // Dispatch search with search term and selected subreddits
-    // dispatch(
-    //   fetchSearchResults({ searchTerm, subreddits: selectedSubreddits })
-    // );
+      // Clear the search term after navigation
+      dispatch(clearTerm());
+    }
   };
 
   return (
@@ -45,8 +48,8 @@ export const Header = () => {
       <form onSubmit={handleSearch}>
         <input
           type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={term}
+          onChange={handleTermChange}
           placeholder="Search posts"
         />
         <button type="submit">Search</button>

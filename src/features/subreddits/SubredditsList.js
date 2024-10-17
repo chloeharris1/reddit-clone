@@ -4,6 +4,7 @@ import { fetchSubredditsList, selectSubreddits } from "./subredditsSlice"; // Im
 import { NavLink } from "react-router-dom";
 import { subredditCategories } from "../../utils/categories";
 import { subredditImg } from "../../utils/utils";
+import { setCurrentSubreddit } from "./subredditsSlice";
 
 export const SubredditsList = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,6 @@ export const SubredditsList = () => {
       dispatch(fetchSubredditsList());
     }
   }, [status, dispatch]);
-
-  // console.log(subreddits);
 
   // Map over categories and filter the dynamic subreddit data to match each category
   const renderSubredditCategories = () => {
@@ -43,6 +42,9 @@ export const SubredditsList = () => {
                       to={`/r/${subreddit.name}`}
                       className={({ isActive }) =>
                         isActive ? "active-subreddit" : ""
+                      }
+                      onClick={() =>
+                        dispatch(setCurrentSubreddit(subreddit.name))
                       }
                     >
                       <img

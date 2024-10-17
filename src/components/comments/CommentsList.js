@@ -1,24 +1,31 @@
 // List of comments in Full Post
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import Comment from "./Comment";
-import { selectCommentsByPostId } from "../../features/posts/postsSlice";
-import { useSelector } from "react-redux";
+import {
+  selectCommentsByPostId,
+  fetchComments,
+} from "../../features/posts/postsSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const CommentsList = ({ postId }) => {
-  // const dispatch = useDispatch();
+const CommentsList = ({ subreddit, postId }) => {
+  const dispatch = useDispatch();
+
   const comments = useSelector((state) =>
     selectCommentsByPostId(state, postId)
   );
+  // console.log(comments, postId);
 
-  // useEffect(() => {
-  //   // fetch comments when component mounts
-  //   dispatch(fetchComments({ subreddit, postId }));
-  // }, [dispatch, subreddit, postId]);
+  // Dispatch fetchComments on mount or when postId changes
+  useEffect(() => {
+    if (!comments.length) {
+      dispatch(fetchComments({ subreddit, postId }));
+    }
+  }, [dispatch, subreddit, postId, comments.length]);
 
-  if (!comments || comments.length === 0) {
+  if (comments.length === 0) {
     return <p>No comments yet</p>;
   }
-  console.log(comments);
+
   return (
     <div className="comments-list">
       {comments.map((comment) => (

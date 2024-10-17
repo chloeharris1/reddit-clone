@@ -25,50 +25,29 @@ import { baseUrl } from "../../utils/utils";
 // Thunk for fetching search results, site-wide search
 export const fetchSearchResults = createAsyncThunk(
   "search/fetchSearchResults",
-  async (searchTerm) => {
-    const response = await fetch(`${baseUrl}/search.json?q=${searchTerm}`);
+  async (term) => {
+    const response = await fetch(`${baseUrl}/search.json?q=${term}`);
     const data = await response.json();
     return data.data.children.map((post) => post.data);
   }
 );
 
-// Thunk for fetching search results by filtering existing posts in state - only fetching results within selected subreddit(s)
-
-// export const fetchSearchResults = createAsyncThunk(
-//   "search/fetchSearchResults",
-//   async (searchTerm, { getState }) => {
-//     const state = getState();
-//     const allPosts = state.posts.posts; // Access posts array inside 'posts' slice
-//     console.log("All posts:", allPosts);
-
-//     // Convert the search term to lowercase
-//     const lowerCaseSearchTerm = searchTerm.toLowerCase();
-//     console.log("Search term:", lowerCaseSearchTerm);
-
-//     // Filter posts by search term (title or selftext match)
-//     const filteredPosts = allPosts.filter((post) => {
-//       console.log("Current post:", post); // Log each post being checked
-//       return (
-//         post.title.toLowerCase().includes(lowerCaseSearchTerm) || // Match by title
-//         (post.selftext &&
-//           post.selftext.toLowerCase().includes(lowerCaseSearchTerm)) // Match by selftext if it exists
-//       );
-//     });
-
-//     console.log("Filtered posts:", filteredPosts); // Log filtered posts
-
-//     return filteredPosts; // Return the filtered results
-//   }
-// );
-
 const searchSlice = createSlice({
   name: "search",
   initialState: {
+    term: "",
     results: [],
     status: "idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setTerm: (state, action) => {
+      state.term = action.payload;
+    },
+    clearTerm: (state, action) => {
+      state.term = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchSearchResults.pending, (state) => {
@@ -77,7 +56,7 @@ const searchSlice = createSlice({
       .addCase(fetchSearchResults.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.results = action.payload; // Store the fetched search results
-        console.log(state.results);
+        // console.log(state.results);
       })
       .addCase(fetchSearchResults.rejected, (state, action) => {
         state.status = "failed";
@@ -88,6 +67,11 @@ const searchSlice = createSlice({
 });
 
 export const selectSearchResults = (state) => state.search.results;
+
+export const selectTerm = (state) => state.search.term;
+
 export const selectSearchStatus = (state) => state.search.status;
 
 export default searchSlice.reducer;
+
+export const { setTerm, clearTerm } = searchSlice.actions;

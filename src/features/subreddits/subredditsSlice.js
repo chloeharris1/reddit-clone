@@ -27,10 +27,15 @@ const subredditsSlice = createSlice({
   name: "subreddits",
   initialState: {
     subreddits: [],
+    currentSubreddit: "dan_markel_murder",
     status: "idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setCurrentSubreddit: (state, action) => {
+      state.activeSubreddit = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchSubredditsList.pending, (state) => {
@@ -48,7 +53,11 @@ const subredditsSlice = createSlice({
       });
   },
 });
+// Action creator
+export const { setCurrentSubreddit } = subredditsSlice.actions;
 
 export default subredditsSlice.reducer;
-
+// Selectors
 export const selectSubreddits = (state) => state.subreddits.subreddits;
+export const selectCurrentSubreddit = (state) =>
+  state.subreddits.currentSubreddit;

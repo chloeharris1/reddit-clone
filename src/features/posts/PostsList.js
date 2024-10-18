@@ -22,30 +22,9 @@ export const PostsList = () => {
     const subredditToFetch =
       subreddit || currentSubreddit || "dan_markel_murder";
     // Set the current subreddit and fetch posts based on the URL
-    // dispatch(setCurrentSubreddit(subredditToFetch));
     dispatch(fetchPosts(subredditToFetch));
     console.log("Subreddit to fetch: ", subredditToFetch);
   }, [subreddit, currentSubreddit, dispatch]);
-
-  // Refactored code - not using
-  // useEffect(() => {
-  //   const subredditToFetch = subreddit || "dan_markel_murder";
-  //   // Sync Redux state with the URL if the selected subreddit doesn't match
-  //   if (currentSubreddit !== subredditToFetch) {
-  //     dispatch(setCurrentSubreddit(subredditToFetch));
-  //     console.log(subredditToFetch);
-  //     dispatch(fetchPosts(subredditToFetch));
-  //   }
-  // }, [subreddit, currentSubreddit, dispatch]);
-
-  // Original code - not using
-  // fetch posts whenever the subreddit changes
-  // useEffect(() => {
-  //   if (selectedSubreddit) {
-  //     console.log("Selected subreddit:", selectedSubreddit);
-  //     dispatch(fetchPosts(selectedSubreddit));
-  //   }
-  // }, [selectedSubreddit, dispatch]);
 
   if (status === "loading") {
     return <p>Loading posts...</p>;
@@ -60,7 +39,9 @@ export const PostsList = () => {
 
   return (
     <div className="posts-list">
+      <hr></hr>
       <h2>r/{subreddit || currentSubreddit}</h2>
+      <hr></hr>
       <ul>
         {userPosts.length === 0 ? (
           <p>No posts available.</p>

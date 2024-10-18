@@ -1,28 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { selectTerm, setTerm, clearTerm } from "../features/search/searchSlice";
+import { currentDate } from "../utils/utils";
 
 export const Header = () => {
   const dispatch = useDispatch();
   const term = useSelector(selectTerm);
-  // const [searchTerm, setSearchTerm] = useState("");
-  // returns the location object from the current URL
-  // let location = useLocation();
-  // const navigate = useNavigate();
 
-  // let handleTermChange = (e) => dispatch(setTerm(e.target.value));
-
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   navigate(`/search?q=${term}`);
-  // };
-
-  // useEffect(() => {
-  //   if (location.pathname !== "/search") {
-  //     dispatch(clearTerm());
-  //   }
-  // }, [location, dispatch]);
   const navigate = useNavigate(); // To navigate to the search results page
 
   const handleTermChange = (event) => {
@@ -44,6 +29,7 @@ export const Header = () => {
 
   return (
     <header className="app-header">
+      <p className="date">{currentDate}</p>
       <h1>True Crime Feed</h1>
       <form onSubmit={handleSearch}>
         <input

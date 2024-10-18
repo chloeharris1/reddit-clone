@@ -13,7 +13,6 @@ const CommentsList = ({ subreddit, postId }) => {
   const comments = useSelector((state) =>
     selectCommentsByPostId(state, postId)
   );
-  // console.log(comments, postId);
 
   // Dispatch fetchComments on mount or when postId changes
   useEffect(() => {

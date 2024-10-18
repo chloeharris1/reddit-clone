@@ -32,6 +32,14 @@ export const userImg = "noun-incognito.png";
 
 /* Helper functions */
 
+// Get today's date and format it
+export const currentDate = new Date().toLocaleDateString("en-US", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
 export const isCommunityHighlight = (post) => {
   return post.stickied;
 };

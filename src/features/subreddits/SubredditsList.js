@@ -30,7 +30,7 @@ export const SubredditsList = () => {
               const subreddit = subreddits.find(
                 (sub) => sub.name === subredditName
               );
-              // console.log("Checking:", subredditName, subreddit); // Log to see the match
+
               return (
                 subreddit && (
                   <li
@@ -50,6 +50,7 @@ export const SubredditsList = () => {
                       <img
                         src={subredditImg || subreddit.image}
                         alt="subreddit-icon"
+                        className="subreddit-icon"
                       />
                       <p>{subreddit.name}</p>
                     </NavLink>
@@ -58,6 +59,7 @@ export const SubredditsList = () => {
               );
             })}
           </ul>
+          <hr></hr>
         </div>
       )
     );

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import {
   selectSearchResults,
   selectSearchStatus,
@@ -30,11 +30,12 @@ export const SearchResults = () => {
 
   return (
     <div className="search-results">
+      <hr></hr>
       <h2>Search results for: {term}</h2>
-
+      <hr></hr>
       {results.map((post) => (
         <div className="search-result" key={post.id}>
-          <h2>{post.subreddit_name_prefixed}</h2>
+          <p>{post.subreddit_name_prefixed}</p>
           <PostPreview key={post.id} post={post} />
         </div>
       ))}

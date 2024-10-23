@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchSubredditsList, selectSubreddits } from "./subredditsSlice"; // Import the thunk
 import { NavLink } from "react-router-dom";
 import { subredditCategories } from "../../utils/categories";
-import { subredditImg } from "../../utils/utils";
 import { setCurrentSubreddit } from "./subredditsSlice";
+import { FingerprintSimple } from "@phosphor-icons/react";
 
 export const SubredditsList = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export const SubredditsList = () => {
     return Object.entries(subredditCategories).map(
       ([category, subredditList]) => (
         <div key={category} className="subreddit-category">
-          <h4>{category}</h4>
+          <h4 className="category">{category}</h4>
           <ul>
             {subredditList.map((subredditName) => {
               const subreddit = subreddits.find(
@@ -47,11 +47,7 @@ export const SubredditsList = () => {
                         dispatch(setCurrentSubreddit(subreddit.name))
                       }
                     >
-                      <img
-                        src={subredditImg || subreddit.image}
-                        alt="subreddit-icon"
-                        className="subreddit-icon"
-                      />
+                      <FingerprintSimple size={28} color="#e0e0e0" />
                       <p>{subreddit.name}</p>
                     </NavLink>
                   </li>

@@ -14,7 +14,7 @@ const FullPost = ({ post }) => {
       <h1>
         <ReactMarkdown>{post.title}</ReactMarkdown>
       </h1>
-      {renderPostContent(post)}
+      <div className="post-content">{renderPostContent(post)}</div>
       <CommentsList subreddit={post.subreddit} postId={post.id} />
     </div>
   );

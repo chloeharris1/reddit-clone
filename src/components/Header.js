@@ -2,7 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectTerm, setTerm, clearTerm } from "../features/search/searchSlice";
-import { currentDate } from "../utils/utils";
+import { MagnifyingGlass } from "@phosphor-icons/react";
+import { RedditLogo } from "@phosphor-icons/react";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -29,16 +30,23 @@ export const Header = () => {
 
   return (
     <header className="app-header">
-      <p className="date">{currentDate}</p>
+      <span className="reddit-logo" alt="reddit-logo">
+        <RedditLogo size={32} color="#fafafa" />
+      </span>
       <h1>True Crime Feed</h1>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          value={term}
-          onChange={handleTermChange}
-          placeholder="Search posts"
-        />
-        <button type="submit">Search</button>
+      <form className="search-bar" onSubmit={handleSearch}>
+        <div className="search-input-wrapper">
+          <MagnifyingGlass size={24} className="search-icon" />
+          <input
+            type="text"
+            value={term}
+            onChange={handleTermChange}
+            placeholder="Search posts"
+          />
+        </div>
+        {/* <button type="submit">
+          <MagnifyingGlass size={24} />
+        </button> */}
       </form>
     </header>
   );

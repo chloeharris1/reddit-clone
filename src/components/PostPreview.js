@@ -12,17 +12,16 @@ const PostPreview = ({ post }) => {
     <Link to={`/r/${post.subreddit}/comments/${post.id}`}>
       <div className="post-preview" alt={post.title}>
         {renderPostCredits(post)}
-        <h2>
+        <h2 className="post-title">
           <ReactMarkdown>{post.title}</ReactMarkdown>
         </h2>
         <div className="post-flair">
           <ReactMarkdown>{post.link_flair_text}</ReactMarkdown>
         </div>
-
-        {renderPostContent(post)}
+        <div className="post-content">{renderPostContent(post)}</div>
         <PostStats post={post} />
-        <hr></hr>
       </div>
+      <hr></hr>
     </Link>
   );
 };

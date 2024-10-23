@@ -27,7 +27,7 @@ export const PostsList = () => {
   }, [subreddit, currentSubreddit, dispatch]);
 
   if (status === "loading") {
-    return <p>Loading posts...</p>;
+    return <p className="loading-message">Loading posts...</p>;
   }
 
   if (status === "failed") {

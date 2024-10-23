@@ -31,11 +31,21 @@
 }
 
 .comment-body {
-  margin: 0.5rem 0;
+  /* margin: 0.5rem 0; */
+  padding-left: 2rem;
 }
+
+/* .comment-body  p{
+  margin: 0;
+  padding-left: 2rem;
+} */
 
 .comment-replies {
   margin-left: 2rem;
-  border-left: 2px solid #ddd;
+  border-left: 1px solid #4f4f4f;
   padding-left: 1rem;
+}
+
+.comment-score {
+  margin-bottom: 0.5rem;
 }

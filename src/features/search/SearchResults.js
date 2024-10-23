@@ -7,6 +7,7 @@ import {
   fetchSearchResults,
 } from "./searchSlice";
 import PostPreview from "../../components/PostPreview";
+import { FingerprintSimple } from "@phosphor-icons/react";
 
 export const SearchResults = () => {
   let [searchParams] = useSearchParams();
@@ -35,7 +36,10 @@ export const SearchResults = () => {
       <hr></hr>
       {results.map((post) => (
         <div className="search-result" key={post.id}>
-          <p>{post.subreddit_name_prefixed}</p>
+          <div className="result-subreddit">
+            <FingerprintSimple size={28} color="#e0e0e0" />
+            <p>{post.subreddit_name_prefixed}</p>
+          </div>
           <PostPreview key={post.id} post={post} />
         </div>
       ))}

@@ -26,10 +26,6 @@ export const crimeSubreddits = [
   "CasesWeFollow",
 ];
 
-export const subredditImg = "noun-fingerprint.png";
-
-export const userImg = "noun-incognito.png";
-
 /* Helper functions */
 
 // Get today's date and format it
@@ -54,9 +50,14 @@ export const isVideoPost = (post) => {
 };
 
 export const isImagePost = (post) => {
+  const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
   return (
-    post.post_hint === "image" ||
-    (post.url && (post.url.endsWith(".jpg") || post.url.endsWith(".png")))
+    imageExtensions.some((ext) => post.url.includes(ext)) ||
+    post.domain === "i.redd.it" ||
+    post.domain === "preview.redd.it"
+
+    // post.post_hint === "image" ||
+    // (post.url && (post.url.endsWith(".jpg") || post.url.endsWith(".png")))
   );
 };
 
@@ -109,8 +110,15 @@ export const renderPostContent = (post) => {
 
   if (isImagePost(post)) {
     // console.log("Image post detected");
-    return <img src={post.url} alt={post.title} />;
+    return (
+      <img
+        src={post.url}
+        alt={post.title}
+        style={{ maxWidth: "100%", height: "auto" }}
+      />
+    );
   }
+  // console.log(post.url);
 
   if (isLinkPost(post)) {
     // console.log("Link post detected");
@@ -137,8 +145,11 @@ export const renderPostContent = (post) => {
 export const renderPostCredits = (post) => {
   return (
     <div className="post-credits">
-      <img src={userImg} className="user-icon" alt="user-icon" />
+      <span className="user-avatar">
+        <img src={`${process.env.PUBLIC_URL}/avatar.png`} alt="user-avatar" />
+      </span>
       <span>{post.author}</span>
+      <span class="dot-separator">•</span>
       <span>{moment.unix(post.created_utc).fromNow()}</span>
     </div>
   );

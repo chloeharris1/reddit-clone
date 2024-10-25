@@ -40,6 +40,12 @@
   padding-left: 2rem;
 } */
 
+.comment-body,
+.comment-replies {
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
 .comment-replies {
   margin-left: 2rem;
   border-left: 1px solid #4f4f4f;

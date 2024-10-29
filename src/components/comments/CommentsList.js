@@ -20,7 +20,7 @@ const CommentsList = ({ subreddit, postId }) => {
       dispatch(fetchComments({ subreddit, postId }));
     }
   }, [dispatch, subreddit, postId, comments.length]);
-  console.log(comments);
+  // console.log(comments);
 
   if (comments.length === 0) {
     return <p>No comments yet</p>;

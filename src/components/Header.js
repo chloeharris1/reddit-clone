@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectTerm, setTerm, clearTerm } from "../features/search/searchSlice";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import { RedditLogo } from "@phosphor-icons/react";
+import { RedditLogo, List, X } from "@phosphor-icons/react";
 
-export const Header = () => {
+export const Header = ({ toggleMenu, isMenuOpen }) => {
   const dispatch = useDispatch();
   const term = useSelector(selectTerm);
 
@@ -29,7 +29,14 @@ export const Header = () => {
   };
 
   return (
-    <header className="app-header">
+    <header className="app-header" id="header">
+      <div className="subreddit-menu" onClick={toggleMenu}>
+        {isMenuOpen ? (
+          <X size={32} color="#fafafa" />
+        ) : (
+          <List size={32} color="#fafafa" />
+        )}
+      </div>
       <span className="reddit-logo" alt="reddit-logo">
         <RedditLogo size={32} color="#fafafa" />
       </span>
@@ -44,9 +51,6 @@ export const Header = () => {
             placeholder="Search posts"
           />
         </div>
-        {/* <button type="submit">
-          <MagnifyingGlass size={24} />
-        </button> */}
       </form>
     </header>
   );

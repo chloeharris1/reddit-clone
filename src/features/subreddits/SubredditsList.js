@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSubredditsList, selectSubreddits } from "./subredditsSlice"; // Import the thunk
 import { NavLink } from "react-router-dom";
 import { subredditCategories } from "../../utils/categories";
 import { setCurrentSubreddit } from "./subredditsSlice";
-import { FingerprintSimple, CaretUp, CaretDown } from "@phosphor-icons/react";
+import { FingerprintSimple } from "@phosphor-icons/react";
 import { useMediaQuery } from "react-responsive";
 
-export const SubredditsList = () => {
+export const SubredditsList = ({ isMenuOpen, toggleMenu }) => {
   const dispatch = useDispatch();
   const subreddits = useSelector(selectSubreddits);
   const status = useSelector((state) => state.subreddits.status);
   const error = useSelector((state) => state.subreddits.error);
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Detect screen size
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
@@ -26,11 +24,6 @@ export const SubredditsList = () => {
       dispatch(fetchSubredditsList());
     }
   }, [status, dispatch]);
-
-  // Handle mobile menu toggle
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   // Map over categories and filter the dynamic subreddit data to match each category
   const renderSubredditCategories = () => {
@@ -56,9 +49,10 @@ export const SubredditsList = () => {
                       className={({ isActive }) =>
                         isActive ? "active-subreddit" : ""
                       }
-                      onClick={() =>
-                        dispatch(setCurrentSubreddit(subreddit.name))
-                      }
+                      onClick={() => {
+                        dispatch(setCurrentSubreddit(subreddit.name));
+                        if (isMobile || isTablet) toggleMenu();
+                      }}
                     >
                       <FingerprintSimple size={28} color="#e0e0e0" />
                       <p>{subreddit.name}</p>
@@ -93,19 +87,13 @@ export const SubredditsList = () => {
 
       {isMobile && (
         <div className="mobile-view">
-          <button onClick={toggleMenu}>
-            {isMenuOpen ? <CaretUp size={32} /> : <CaretDown size={32} />}
-          </button>
           {isMenuOpen && (
             <div className="mobile-menu">{renderSubredditCategories()}</div>
           )}
         </div>
       )}
+      <div className="creator">Made with ❤️ by Chloe</div>
     </div>
-    // <div className="subreddits-list">
-    //   {/* <h2>Subreddits</h2> */}
-    //   {renderSubredditCategories()}
-    // </div>
   );
 };
 

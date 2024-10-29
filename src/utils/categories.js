@@ -15,6 +15,7 @@ export const subredditCategories = {
     "courtneyclenneytrial",
     "jaredbridegan",
     "KouriRichins",
+    "GilgoBeachMurders",
   ],
   MEDIA: [
     "ForensicFiles",

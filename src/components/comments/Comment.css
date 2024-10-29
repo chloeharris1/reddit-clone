@@ -35,10 +35,9 @@
   padding-left: 2rem;
 }
 
-/* .comment-body  p{
+.comment-body p {
   margin: 0;
-  padding-left: 2rem;
-} */
+}
 
 .comment-body,
 .comment-replies {

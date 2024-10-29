@@ -40,7 +40,7 @@ export const PostsList = () => {
   return (
     <div className="posts-list">
       <hr></hr>
-      <h2>r/{subreddit || currentSubreddit}</h2>
+      <h3>r/{subreddit || currentSubreddit}</h3>
       <hr></hr>
       <ul>
         {userPosts.length === 0 ? (

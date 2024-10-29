@@ -24,6 +24,7 @@ export const crimeSubreddits = [
   "jaredbridegan",
   "KouriRichins",
   "CasesWeFollow",
+  "GilgoBeachMurders",
 ];
 
 /* Helper functions */
@@ -114,7 +115,13 @@ export const renderPostContent = (post) => {
       <img
         src={post.url}
         alt={post.title}
-        style={{ maxWidth: "100%", height: "auto" }}
+        style={{
+          maxWidth: "100%",
+          height: "auto",
+          maxHeight: "50vh",
+          objectFit: "cover",
+          objectPosition: "top",
+        }}
       />
     );
   }

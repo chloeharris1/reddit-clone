@@ -5,27 +5,31 @@ import { SearchResults } from "./features/search/SearchResults";
 import SubredditsList from "./features/subreddits/SubredditsList";
 import PostsList from "./features/posts/PostsList";
 import { Header } from "./components/Header";
+import { useState } from "react";
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+    console.log("Menu Clicked");
+  };
   return (
     <div className="App">
       <div className="app-container">
-        <Header />
-        <div className="sidebar">
-          <SubredditsList />
+        <Header toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
+        {isMenuOpen && <div className="overlay" onClick={toggleMenu} />}
+        <div className={`sidebar ${isMenuOpen ? "open" : "closed"}`}>
+          <SubredditsList isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         </div>
         <div className="main-content">
           <Routes>
-            {/* Route to view a full post */}
             <Route
               path="/r/:subreddit/comments/:postId"
               element={<CurrentPost />}
             />
-            {/* Route to view posts in a specific subreddit */}
             <Route path="/r/:subreddit" element={<PostsList />} />
-            {/* Route to view search results */}
             <Route path="/search" element={<SearchResults />} />
-            {/* Default route: display posts for a default subreddit */}
             <Route path="/" element={<PostsList />} />
           </Routes>
         </div>

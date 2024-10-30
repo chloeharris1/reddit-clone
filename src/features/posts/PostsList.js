@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectPosts, fetchPosts } from "./postsSlice";
 import PostPreview from "../../components/PostPreview";
+import { LoadingMsg } from "../../components/UserMessage";
 import { isCommunityHighlight } from "../../utils/utils";
 import { useParams } from "react-router-dom";
 // import { SearchResults } from "../search/SearchResults";
@@ -27,7 +28,7 @@ export const PostsList = () => {
   }, [subreddit, currentSubreddit, dispatch]);
 
   if (status === "loading") {
-    return <p className="loading-message">Loading posts...</p>;
+    return <LoadingMsg />;
   }
 
   if (status === "failed") {

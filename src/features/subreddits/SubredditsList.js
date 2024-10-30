@@ -54,7 +54,7 @@ export const SubredditsList = ({ isMenuOpen, toggleMenu }) => {
                         if (isMobile || isTablet) toggleMenu();
                       }}
                     >
-                      <FingerprintSimple size={28} color="#e0e0e0" />
+                      <FingerprintSimple size={28} className="subreddit-icon" />
                       <p>{subreddit.name}</p>
                     </NavLink>
                   </li>

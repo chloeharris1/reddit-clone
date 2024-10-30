@@ -72,3 +72,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Attribution
 
 Subreddit icon created by Iconsparty from Noun Project
+
+<a href="https://www.freepik.com/free-vector/detective-following-footprints-concept-illustration_82648093.htm#fromView=image_search_similar&page=1&position=6&uuid=a4ee864d-411a-48db-9f09-5190f11dced6">Image by storyset on Freepik</a>

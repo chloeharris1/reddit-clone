@@ -7,6 +7,7 @@ import {
   fetchSearchResults,
 } from "./searchSlice";
 import PostPreview from "../../components/PostPreview";
+import { LoadingSearch, NoResultsFound } from "../../components/UserMessage";
 import { FingerprintSimple } from "@phosphor-icons/react";
 
 export const SearchResults = () => {
@@ -23,10 +24,11 @@ export const SearchResults = () => {
   }, [term, dispatch]);
 
   if (status === "loading") {
-    return <p>Loading search results...</p>;
+    return <LoadingSearch />;
   }
   if (results.length === 0 && status === "succeeded") {
-    return <p>No results found for "{term}".</p>;
+    return <NoResultsFound />;
+    // return <p>No results found for "{term}".</p>;
   }
 
   return (

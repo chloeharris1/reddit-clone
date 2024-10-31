@@ -6,14 +6,16 @@
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 body,
 html {
   margin: 0;
   padding: 0;
-  font-family: "Source Sans 3", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -31,7 +33,7 @@ ul {
 }
 
 .App {
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   background-color: #1c1c1c;
 }
@@ -61,12 +63,10 @@ ul {
 /* Font Settings */
 
 h1 {
-  font-family: "Source Sans 3", sans-serif;
   color: #fafafa;
 }
 
 body {
-  font-family: "Source Sans 3", sans-serif;
   color: #9e9e9e;
 }
 
@@ -79,28 +79,29 @@ a:hover {
   background-color: #333333;
 }
 
-/* Grid Layout */
-
-.app-container {
-  display: grid;
-  gap: 16px;
-  /* width: 100vw; */
-  max-width: 100%;
-}
-
 hr {
   border: none;
   height: 1.5px;
   background-color: #333333;
   margin: 8px 0;
   width: 100%;
+  max-width: 100%;
+}
+
+/* Grid Layout */
+
+.app-container {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .post-content img {
   display: block;
   margin: 0 auto;
-  /* Center image if needed */
   image-orientation: from-image;
+  max-width: 100%;
 }
 
 .post-content .markdown-content {
@@ -124,9 +125,7 @@ header .hamburger-menu {
 .mobile-menu {
   color: #e0e0e0;
   border-radius: 8px;
-  margin-top: 10px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-  padding: 10px;
+  padding: 0 16px;
   z-index: 10;
 }
 
@@ -151,8 +150,11 @@ header .hamburger-menu {
 }
 
 .main-content {
-  /* padding: 16px; */
+  padding: 16px;
   transition: margin-left 0.3s ease;
+  /* New */
+  width: 100%;
+  /* outline: 1px solid red; */
 }
 
 /* Header styles */
@@ -160,7 +162,6 @@ header .hamburger-menu {
 header {
   color: #fafafa;
   border-bottom: 1px solid #4f4f4f;
-  font-family: "Source Sans 3", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -181,7 +182,7 @@ header {
 /* Subreddits List */
 
 .subreddits-list {
-  padding: 10px 20px;
+  padding: 16px 20px;
 }
 
 .subreddits-list ul {
@@ -217,8 +218,6 @@ header {
 
 .subreddits-list ul li .active-subreddit {
   background-color: #4f4f4f;
-  /* font-weight: 700; */
-  /* border-left: 3px solid #ff6666; */
   width: 100%;
   padding: 8px 12px;
   border-radius: 6px;
@@ -238,7 +237,7 @@ header {
 }
 
 .creator {
-  padding: 10px 16px;
+  padding: 16px;
 }
 
 /* Post List Styling */
@@ -246,7 +245,7 @@ header {
 .posts-list,
 .post-preview,
 .search-results {
-  width: auto;
+  /* width: auto; */
   max-width: 100%;
 }
 
@@ -263,7 +262,7 @@ header {
   transition: background-color 0.3s ease;
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .post-preview:hover {
@@ -271,7 +270,6 @@ header {
 }
 
 .post-preview h2 {
-  font-family: "Source Sans 3", sans-serif;
   font-weight: 500;
   color: #fafafa;
   margin: 10px 0;
@@ -347,13 +345,6 @@ header {
   font-weight: 500;
 }
 
-.comment-score {
-  gap: 6px;
-  padding: 5px 0;
-  font-size: 14px;
-  color: #fafafa;
-}
-
 .post-score,
 .post-comments,
 .post-awards {
@@ -388,6 +379,9 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* New */
+  /* width: 100%; */
+  /* padding: 0 16px; */
 }
 
 .search-results h2 {
@@ -399,7 +393,9 @@ header {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
+  /* New */
+  /* padding: 0 16px; */
 }
 
 input[type="text"] {
@@ -410,8 +406,10 @@ input[type="text"] {
   border: none;
   background-color: #333333;
   color: #e0e0e0;
-  font-family: "Source Sans 3", sans-serif;
   font-size: 16px;
+  /* New */
+  max-width: 100%;
+  /* padding: 10px 40px; */
 }
 
 .search-icon {
@@ -457,7 +455,7 @@ form {
   display: flex;
   gap: 16px;
   min-height: 100vh;
-  max-width: 100vw;
+  max-width: 100%;
   margin-top: 16px;
 }
 
@@ -485,16 +483,23 @@ form {
 
 @media (max-width: 767px) {
   .app-container {
+    display: grid;
     grid-template-columns: auto 1fr;
     grid-template-areas: "header header" "sidebar main";
   }
   .app-header h1 {
     display: none;
   }
+  body {
+    font-size: 0.9rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
   .main-content {
+    width: 100%;
     padding: 0 16px;
     margin: 0 auto;
-    box-sizing: border-box;
     transition: margin-left 0.3s ease;
     z-index: 1;
   }
@@ -502,7 +507,8 @@ form {
     padding: 16px 16px;
   }
   .posts-list {
-    padding: 0 20px;
+    /* padding: 0 20px; */
+    max-width: 100%;
   }
   .search-bar {
     width: 100%;
@@ -510,9 +516,8 @@ form {
   /* Subreddit Sidebar */
   .sidebar {
     grid-area: sidebar;
-    background-color: #1c1c1c;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 5;
+    z-index: 10;
   }
   .sidebar.closed {
     display: none;
@@ -521,10 +526,10 @@ form {
   }
   .sidebar.open {
     position: absolute;
-    top: 42px;
+    top: 76px;
     left: 0;
-    width: 40vw;
-    height: calc(100% - 42px);
+    width: 80%;
+    height: calc(100% - 76px);
     transform: translateX(0);
     opacity: 1;
   }
@@ -543,6 +548,7 @@ form {
   }
   .subreddits-list {
     padding-left: 0;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -550,6 +556,7 @@ form {
 
 @media (min-width: 768px) and (max-width: 991px) {
   .app-container {
+    display: grid;
     grid-template-columns: auto 1fr;
     grid-template-areas: "header header" "sidebar main";
   }
@@ -562,11 +569,12 @@ form {
   .full-post,
   .search-results {
     width: 100%;
+    max-width: 100%;
   }
   .main-content {
-    padding: 0 16px;
+    width: 80%;
+    /* padding: 20 40px; */
     margin: 0 auto;
-    box-sizing: border-box;
     transition: margin-left 0.3s ease;
     z-index: 1;
   }
@@ -575,10 +583,9 @@ form {
   }
   /* Subreddit Sidebar */
   .sidebar {
-    /* grid-area: sidebar; */
     background-color: #1c1c1c;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 5;
+    z-index: 10;
   }
   .sidebar.closed {
     display: none;
@@ -613,13 +620,13 @@ form {
 
 @media (min-width: 992px) {
   .app-container {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr 4fr;
     grid-template-areas: "header header" "sidebar main";
-    gap: 20px;
+    /* gap: 16px; */
   }
   header {
-    padding: 20px 20px;
+    padding: 16px 16px;
   }
   header .subreddit-menu {
     display: none;
@@ -630,17 +637,20 @@ form {
   .sidebar {
     display: block;
   }
-  .main-content,
-  .posts-list,
+  /* .main-content, */
+  /* .posts-list, */
   .post-preview,
   .full-post,
   .search-results {
     width: 90%;
+    max-width: 100%;
   }
   .main-content {
-    padding: 20px;
+    width: 80%;
   }
   .posts-list {
-    padding: 0 40px;
+    /* padding: 0 40px; */
+    width: 100%;
+    padding: 0 16px;
   }
 }

@@ -54,3 +54,10 @@
 .comment-score {
   margin-bottom: 0.5rem;
 }
+
+.comment-score {
+  gap: 6px;
+  padding: 5px 0;
+  font-size: 14px;
+  color: #fafafa;
+}

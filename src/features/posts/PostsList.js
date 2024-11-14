@@ -5,7 +5,6 @@ import PostPreview from "../../components/PostPreview";
 import { LoadingMsg } from "../../components/UserMessage";
 import { isCommunityHighlight } from "../../utils/utils";
 import { useParams } from "react-router-dom";
-// import { SearchResults } from "../search/SearchResults";
 import { selectCurrentSubreddit } from "../subreddits/subredditsSlice";
 
 export const PostsList = () => {
@@ -40,7 +39,7 @@ export const PostsList = () => {
 
   return (
     <div className="posts-list">
-      <hr></hr>
+      {/* <hr></hr> */}
       <h3>r/{subreddit || currentSubreddit}</h3>
       <hr></hr>
       <ul>

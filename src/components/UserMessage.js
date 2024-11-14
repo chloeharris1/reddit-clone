@@ -1,4 +1,5 @@
 import BounceLoader from "react-spinners/BounceLoader";
+import { Detective } from "@phosphor-icons/react";
 
 // Loading posts list
 export const LoadingMsg = () => {
@@ -24,13 +25,14 @@ export const LoadingSearch = () => {
 export const NoResultsFound = () => {
   return (
     <div className="page-status">
-      <p className="loading-message">
-        Your search has gone cold. No results found.
-      </p>
-      <img
-        src={`${process.env.PUBLIC_URL}/searching.png`}
-        alt="detective searching"
-      ></img>
+      <span className="loading-message">
+        <h3>Your search has gone cold.</h3>
+        <p>
+          Double-check your spelling or try different keywords to adjust your
+          search
+        </p>
+      </span>
+      <Detective size={80} color="#fafafa" />
     </div>
   );
 };

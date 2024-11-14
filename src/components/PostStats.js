@@ -15,7 +15,7 @@ const PostStats = ({ post }) => {
         <ArrowFatDown size={16} color="#E0E0E0" />
       </span>
       <span className="post-comments">
-        <ChatTeardrop size={16} color="#ff6666" />
+        <ChatTeardrop size={16} color="#E0E0E0" />
         {post.num_comments} {post.num_comments === 1 ? "Comment" : "Comments"}
       </span>
       <span className="post-awards">

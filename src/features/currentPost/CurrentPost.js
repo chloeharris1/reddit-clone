@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPostById, clearCurrentPost } from "./currentPostSlice";
 import { useParams } from "react-router-dom";
 import FullPost from "../../components/FullPost";
+import { LoadingMsg } from "../../components/UserMessage";
 
 const CurrentPost = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const CurrentPost = () => {
   }, [dispatch, subreddit, postId]);
 
   if (loading) {
-    return <p>Loading post...</p>;
+    return <LoadingMsg />;
   }
 
   if (error) {

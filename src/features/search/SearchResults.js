@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import {
   selectSearchResults,
   selectSearchStatus,
@@ -8,13 +8,12 @@ import {
 } from "./searchSlice";
 import PostPreview from "../../components/PostPreview";
 import { LoadingSearch, NoResultsFound } from "../../components/UserMessage";
-import { FingerprintSimple } from "@phosphor-icons/react";
+import { FingerprintSimple, ArrowLeft } from "@phosphor-icons/react";
 
 export const SearchResults = () => {
   let [searchParams] = useSearchParams();
   let term = searchParams.get("q");
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const results = useSelector(selectSearchResults);
   const status = useSelector(selectSearchStatus);
@@ -28,14 +27,16 @@ export const SearchResults = () => {
   }
   if (results.length === 0 && status === "succeeded") {
     return <NoResultsFound />;
-    // return <p>No results found for "{term}".</p>;
   }
 
   return (
     <div className="search-results">
-      <hr></hr>
-      <h2>Search results for: {term}</h2>
-      <hr></hr>
+      <div className="search-results-header">
+        <Link to={`/`} className="back-btn" alt="Back to posts list">
+          <ArrowLeft size={24} className="arrow" />
+        </Link>
+        <h2>Search results for: {term}</h2>
+      </div>
       {results.map((post) => (
         <div className="search-result" key={post.id}>
           <div className="result-subreddit">

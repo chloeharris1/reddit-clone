@@ -34,7 +34,7 @@ const searchSlice = createSlice({
       })
       .addCase(fetchSearchResults.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.results = action.payload; // Store the fetched search results
+        state.results = action.payload;
       })
       .addCase(fetchSearchResults.rejected, (state, action) => {
         state.status = "failed";

@@ -1,76 +1,80 @@
-# Getting Started with Create React App
+# True Crime Feed
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A client-side web application focused on browsing and exploring true crime-related content from Reddit. This app uses the Reddit JSON API to fetch and display posts from popular true-crime subreddits, along with search functionality that allows users to explore additional subreddits and posts.
 
-## Available Scripts
+Built with React, Redux, and a responsive layout, this app provides an intuitive and immersive experience for true-crime enthusiasts.This project is part of Codecademy's Front-End Engineer path.
 
-In the project directory, you can run:
+![True Crime Feed Mockups](./public/redditmocks.png)
 
-### `npm start`
+## Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Future Improvements](#future-improvements)
+- [Attribution](#attribution)
+- [License](#license)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- **Browse True Crime Content**: View posts from popular true-crime-related subreddits, such as UnsolvedMysteries, ColdCases, and ForensicFiles.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Search Functionality**: Search across Reddit to find specific subreddits, posts, or keywords within the true-crime genre.
 
-### `npm run build`
+- **Post Detail View**: Click on any post to view its full content, comments, and discussion details.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Responsive Layout**: Optimized for desktop, tablet, and mobile devices, with a grid layout that adapts seamlessly to different screen sizes.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Subreddit Categories**: Subreddits are organized by categories like UNSOLVED and MEDIA for easy navigation.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Live Updates**: The app fetches the latest data from Reddit, so content is always up-to-date.
 
-### `npm run eject`
+## Technologies Used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **React**: Frontend JavaScript library for building user interfaces.
+- **Redux**: State management to handle global application state.
+- **Reddit JSON API**: To fetch posts, comments, and subreddit data.
+- **React Router**: For handling navigation within the app.
+- **CSS Grid**: For a responsive, grid-based layout.
+- **Moment.js**: For formatting timestamps in post previews.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone the repository:
+   ```
+   git clone https://github.com/chloeharris1/reddit-clone.git
+   cd reddit-clone
+   ```
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Start the development server:
+   ```
+   npm start
+   ```
+4. Open the app:
+   Open http://localhost:3000 in your browser.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+- **Explore Posts**: Browse posts and discussions from selected true-crime subreddits.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Search**: Use the search bar to find specific true-crime content across Reddit.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **View Full Post**: Click on a post to see details and comments.
 
-### Code Splitting
+- **Responsive Layout**: Enjoy a user-friendly experience on both desktop and mobile devices.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Future Improvements
 
-### Analyzing the Bundle Size
+**Enhanced filters**: Add filtering options by date and popularity.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Attribution
 
-### Making a Progressive Web App
+Icons from [Phosphor Icons](https://phosphoricons.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### Attribution
-
-Subreddit icon created by Iconsparty from Noun Project
-
-<a href="https://www.freepik.com/free-vector/detective-following-footprints-concept-illustration_82648093.htm#fromView=image_search_similar&page=1&position=6&uuid=a4ee864d-411a-48db-9f09-5190f11dced6">Image by storyset on Freepik</a>
+This project is licensed under the MIT License.

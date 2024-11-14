@@ -44,12 +44,12 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = "succeeded";
-        // Store fetched subreddit data in the state
+
         state.posts = action.payload;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";
-        // Store fetched subreddit data in the state
+
         state.error = action.error.message;
       })
       // Handling comment fetching

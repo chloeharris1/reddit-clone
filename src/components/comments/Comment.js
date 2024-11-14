@@ -36,13 +36,6 @@ const Comment = ({ comment }) => {
             )}
           </div>
         )}
-        {/* {replies && replies.length > 0 && (
-          <div className="comment-replies">
-            {replies.map((reply) => (
-              <Comment key={reply.id} comment={reply} />
-            ))}
-          </div>
-        )} */}
       </div>
     </div>
   );

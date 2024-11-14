@@ -80,14 +80,16 @@ export const renderPostContent = (post) => {
       if (match) {
         const videoUrl = match[1];
         return (
-          <iframe
-            src={videoUrl}
-            title={post.title}
-            width="100%"
-            height="400px"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+          <div className="media-container">
+            <iframe
+              src={videoUrl}
+              title={post.title}
+              width="100%"
+              height="400px"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
         );
       }
     }
@@ -96,15 +98,16 @@ export const renderPostContent = (post) => {
     if (post.domain === "youtu.be" || post.domain === "youtube.com") {
       const videoId = post.url.split("/").pop();
       return (
-        <iframe
-          src={`https://www.youtube.com/embed/${videoId}`}
-          width="560"
-          height="315"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title={post.title}
-        />
+        <div className="media-container">
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}`}
+            width="560"
+            // frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={post.title}
+          />
+        </div>
       );
     }
   }
@@ -112,17 +115,19 @@ export const renderPostContent = (post) => {
   if (isImagePost(post)) {
     // console.log("Image post detected");
     return (
-      <img
-        src={post.url}
-        alt={post.title}
-        style={{
-          maxWidth: "100%",
-          height: "auto",
-          maxHeight: "50vh",
-          objectFit: "cover",
-          objectPosition: "top",
-        }}
-      />
+      <div className="media-container">
+        <img
+          src={post.url}
+          alt={post.title}
+          style={{
+            // maxWidth: "100%",
+            // height: "auto",
+            // maxHeight: "100%",
+            objectFit: "contain",
+            // objectPosition: "top",
+          }}
+        />
+      </div>
     );
   }
   // console.log(post.url);

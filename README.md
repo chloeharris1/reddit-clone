@@ -4,6 +4,8 @@ A client-side web application focused on browsing and exploring true crime-relat
 
 Built with React, Redux, and a responsive layout, this app provides an intuitive and immersive experience for true-crime enthusiasts.This project is part of Codecademy's Front-End Engineer path.
 
+Check out the [Live Site](https://truecrimefeed.netlify.app/)
+
 ![True Crime Feed Mockups](./public/redditmocks.png)
 
 ## Table of Contents

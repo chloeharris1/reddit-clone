@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
+import { UserCircle } from "@phosphor-icons/react";
 
 // Base URL
 export const baseUrl = "https://www.reddit.com";
@@ -135,7 +136,12 @@ export const renderPostContent = (post) => {
   if (isLinkPost(post)) {
     // console.log("Link post detected");
     return (
-      <a href={post.url} target="_blank" rel="noopener noreferrer">
+      <a
+        href={post.url}
+        className="post-url"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {post.url}
       </a>
     );
@@ -158,11 +164,18 @@ export const renderPostCredits = (post) => {
   return (
     <div className="post-credits">
       <span className="user-avatar">
-        <img src={`${process.env.PUBLIC_URL}/avatar.png`} alt="user-avatar" />
+        <UserCircle size={24} alt="user-avatar" color="#fafafa" />
       </span>
       <span>{post.author}</span>
       <span class="dot-separator">•</span>
       <span>{moment.unix(post.created_utc).fromNow()}</span>
+      <a
+        href={`https://www.reddit.com${post.permalink}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View on Reddit
+      </a>
     </div>
   );
 };
